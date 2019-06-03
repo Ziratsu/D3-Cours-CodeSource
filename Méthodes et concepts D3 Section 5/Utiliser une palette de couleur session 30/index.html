@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>    
+</head>   
+<body>
+  
+<script>
+var svg = d3.select("body").append("svg").attr("width", 1000).attr("height",400)
+
+// data
+var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+var myColor = d3.scaleLinear()
+                .domain([1,15])
+                .range(["blue", "red"]);
+
+svg.selectAll(".rangee1")
+.data(data)
+.enter()
+.append("circle")
+.attr("cx", function(d,i){return 30 + i*60})
+.attr("cy", 50)
+.attr("r", 19)
+.attr('fill', function(d){ return myColor(d)})
+
+
+var myColor2 = d3.scaleSequential()
+                 .domain([1,15])
+                 .interpolator(d3.interpolateSinebow)
+
+svg.selectAll(".rangee2")
+.data(data)
+.enter()
+.append("circle")
+.attr("cx", function(d,i){return 30 + i*60})
+.attr("cy", 150)
+.attr("r", 19)
+.attr('fill', function(d){ return myColor2(d)})
+
+
+
+</script>
+
+</body>
+</html> 
